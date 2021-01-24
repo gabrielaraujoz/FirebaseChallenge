@@ -12,12 +12,17 @@ import com.gabrielaraujoz.firebasechallenge.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 
 class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var storage: FirebaseStorage
     private lateinit var accountName: TextInputEditText
     private lateinit var accountEmail: TextInputEditText
     private lateinit var accountPassword: TextInputEditText
@@ -85,6 +90,9 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun criarConta(nome: String, email: String, password: String) {
 
+        storage = FirebaseStorage.getInstance()
+
+
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -95,6 +103,9 @@ class CreateAccountActivity : AppCompatActivity() {
                                 baseContext, "User successfully created",
                                 Toast.LENGTH_SHORT
                         ).show()
+
+                        val reference = storage.getReference("users")
+                        reference.child(user!!.uid)
 
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)

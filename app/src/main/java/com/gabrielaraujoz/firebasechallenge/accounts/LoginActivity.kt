@@ -1,9 +1,12 @@
 package com.gabrielaraujoz.firebasechallenge.accounts
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gabrielaraujoz.firebasechallenge.MainActivity
@@ -22,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var accountPassword: TextInputEditText
     private lateinit var tilAccountEmail: TextInputLayout
     private lateinit var tilAccountPassword: TextInputLayout
+    private lateinit var checkBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
         accountEmail = findViewById(R.id.etLoginEmail)
         accountPassword = findViewById(R.id.etLoginPassword)
+        checkBox = findViewById(R.id.cbLoginRemember)
 
         findViewById<Button>(R.id.btnLoginCreateAcc).setOnClickListener() {
             val intent = Intent(this, CreateAccountActivity::class.java)
@@ -78,4 +83,10 @@ class LoginActivity : AppCompatActivity() {
 
         return response
     }
+
+//    fun salvarRemember(context: Context, check: String?) {
+//        val preferences: SharedPreferences =
+//            context.getSharedPreferences("APP", Context.MODE_PRIVATE)
+//        preferences.edit().putString("UIID", uiid).apply()
+//    }
 }
