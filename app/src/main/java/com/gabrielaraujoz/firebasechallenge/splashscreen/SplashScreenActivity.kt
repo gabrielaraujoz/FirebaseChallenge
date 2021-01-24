@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.gabrielaraujoz.firebasechallenge.R
-import com.gabrielaraujoz.firebasechallenge.login.LoginActivity
+import com.gabrielaraujoz.firebasechallenge.accounts.LoginActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".accounts.LoginActivity">
+    tools:context=".accounts.CreateAccountActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -37,12 +37,27 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:inputType="text"
+                    android:textColor="@color/text_green"
+                    android:id="@+id/etCreateName"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/email"
                     android:backgroundTint="@color/white"
                     android:background="@color/white"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/text_green"
-                    android:id="@+id/etLoginEmail"/>
+                    android:id="@+id/etCreateEmail"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -57,44 +72,37 @@
                     android:background="@color/white"
                     android:inputType="textPassword"
                     android:textColor="@color/text_green"
-                    android:id="@+id/etLoginPassword"/>
+                    android:id="@+id/etCreatePassword1"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cbLoginRemember"
-                android:layout_width="wrap_content"
-                android:backgroundTint="@color/white"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:background="@color/white"
-                android:shadowColor="@color/red_app"
-                android:layout_height="wrap_content"
-                android:text="@string/remember"/>
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/repeat_password"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_green"
+                    android:id="@+id/etCreatePassword2"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/log_in"
+                android:text="@string/create_account"
                 app:cornerRadius="3dp"
                 android:fontFamily="@font/roboto"
                 android:backgroundTint="@color/red_app"
-                android:id="@+id/btnLoginLogin"/>
-
-            <Button
-                android:id="@+id/btnLoginCreateAcc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/roboto"
-                android:text="@string/create_account"
-                android:textAllCaps="false"
-                android:textColor="@color/create_acc_color"
-                app:cornerRadius="3dp" />
+                android:id="@+id/btnCreateAcc"/>
 
         </LinearLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

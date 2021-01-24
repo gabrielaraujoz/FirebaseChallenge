@@ -10,4 +10,5 @@
     <color name="text_green">#009688</color>
     <color name="red_app">#FF5252</color>
     <color name="create_acc_color">#00A6FF</color>
+    <color name="normal_text">#8492A6</color>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467746679482",
+    "project_id": "fir-challenge-4816c",
+    "storage_bucket": "fir-challenge-4816c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467746679482:android:c81099836d1a6b0fb87083",
+        "android_client_info": {
+          "package_name": "com.gabrielaraujoz.firebasechallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467746679482-kqkmrpoth6emsc7umgq23uernc963qnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoiECSL6tjyqwJhg-yY3CjqLccfxNnKY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467746679482-kqkmrpoth6emsc7umgq23uernc963qnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
