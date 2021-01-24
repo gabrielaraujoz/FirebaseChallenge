@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/splash_screen_wallpaper" />
+        android:src="@drawable/splash_screen_wallpaper"
+        android:contentDescription="@string/kratos_background_image" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
+                android:id="@+id/tilCreateName"
                 android:backgroundTint="@color/white"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
@@ -48,6 +50,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/white"
+                android:id="@+id/tilCreateEmail"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -63,6 +66,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:background="@color/white"
+                android:id="@+id/tilCreatePassword"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -72,12 +76,13 @@
                     android:background="@color/white"
                     android:inputType="textPassword"
                     android:textColor="@color/text_green"
-                    android:id="@+id/etCreatePassword1"/>
+                    android:id="@+id/etCreatePassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:background="@color/white"
+                android:id="@+id/tilRepeatPassword"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -87,7 +92,7 @@
                     android:background="@color/white"
                     android:inputType="textPassword"
                     android:textColor="@color/text_green"
-                    android:id="@+id/etCreatePassword2"/>
+                    android:id="@+id/etRepeatPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

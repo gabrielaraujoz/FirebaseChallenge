@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "467746679482",
+    "firebase_url": "https://fir-challenge-4816c-default-rtdb.firebaseio.com",
     "project_id": "fir-challenge-4816c",
     "storage_bucket": "fir-challenge-4816c.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "467746679482-glql7epr3fce63eesr79n9kss93t64q0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gabrielaraujoz.firebasechallenge",
+            "certificate_hash": "2d52be02af5eb7e25be90ba0830a835801755202"
+          }
+        },
         {
           "client_id": "467746679482-kqkmrpoth6emsc7umgq23uernc963qnf.apps.googleusercontent.com",
           "client_type": 3

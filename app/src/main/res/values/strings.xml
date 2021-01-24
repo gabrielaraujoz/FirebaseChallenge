@@ -7,4 +7,7 @@
     <string name="remember">Remember</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="name">Name</string>
+    <string name="kratos_background_image">Kratos background image</string>
+    <string name="type_email">Please type your e-mail</string>
+    <string name="type_password">Please type you password</string>
 </resources>
