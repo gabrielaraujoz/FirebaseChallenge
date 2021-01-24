@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/splash_screen_wallpaper" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_green"
+                    android:id="@+id/etLoginEmail"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_green"
+                    android:id="@+id/etLoginPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbLoginRemember"
+                android:layout_width="wrap_content"
+                android:backgroundTint="@color/white"
+                android:background="@color/white"
+                android:shadowColor="@color/red_app"
+                android:layout_height="wrap_content"
+                android:text="Remember"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/log_in"
+                app:cornerRadius="3dp"
+                android:fontFamily="@font/roboto"
+                android:backgroundTint="@color/red_app"
+                android:id="@+id/btnLogin"/>
+
+            <Button
+                android:id="@+id/btnCreateAcc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/roboto"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textColor="@color/create_acc_color"
+                app:cornerRadius="3dp" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
