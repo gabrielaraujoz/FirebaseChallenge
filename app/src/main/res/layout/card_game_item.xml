@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="249dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    android:layout_height="250dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/imgCardGame"/>
+
+        <TextView
+            android:id="@+id/txtCardGameName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/card_game_name"
+            tools:text="MORTAL COMBAT X"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/txtCardGameYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="21sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/normal_text"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="start"
+            tools:text="2018"/>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

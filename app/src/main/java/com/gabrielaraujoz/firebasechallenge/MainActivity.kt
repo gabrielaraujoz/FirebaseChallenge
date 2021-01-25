@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.gabrielaraujoz.firebasechallenge.accounts.LoginActivity
+import com.gabrielaraujoz.firebasechallenge.games.view.CreateGameActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.storage.FirebaseStorage
@@ -28,6 +30,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        findViewById<FloatingActionButton>(R.id.btnAddGame).setOnClickListener() {
+            val intent = Intent(this, CreateGameActivity::class.java)
+            startActivity(intent)
         }
 
     }

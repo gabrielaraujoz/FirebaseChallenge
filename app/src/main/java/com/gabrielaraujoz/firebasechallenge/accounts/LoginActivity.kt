@@ -33,8 +33,6 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        supportActionBar?.hide()
-
         accountEmail = findViewById(R.id.etLoginEmail)
         accountPassword = findViewById(R.id.etLoginPassword)
         checkBox = findViewById(R.id.cbLoginRemember)

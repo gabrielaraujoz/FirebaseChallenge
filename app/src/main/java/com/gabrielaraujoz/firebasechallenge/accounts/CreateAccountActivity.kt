@@ -35,7 +35,6 @@ class CreateAccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        supportActionBar?.hide()
         auth = FirebaseAuth.getInstance()
 
         accountName = findViewById(R.id.etCreateName)

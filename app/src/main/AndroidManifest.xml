@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChallenge">
-        <activity android:name=".games.model.GameModel"></activity>
+        <activity android:name=".games.view.GameDetailsActivity"></activity>
+        <activity android:name=".games.view.CreateGameActivity" />
+        <activity android:name=".games.model.GameModel" />
         <activity android:name=".accounts.CreateAccountActivity" />
         <activity android:name=".accounts.LoginActivity" />
         <activity
