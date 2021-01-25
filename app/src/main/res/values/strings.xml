@@ -22,5 +22,6 @@
     <string name="insert_game_description">Please insert the description</string>
     <string name="insert_game_image">Please insert an image for the game</string>
     <string name="image_upload_failure">Image could not be uploaded</string>
+    <string name="error_verify_inputs">Please verify your inputs</string>
 
 </resources>

@@ -76,7 +76,11 @@ class CreateGameActivity : AppCompatActivity() {
                     gameDescription.text.toString(),
                     imageFileReference
                 )
-
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, getString(R.string.error_verify_inputs), Toast.LENGTH_SHORT).show()
             }
         }
 

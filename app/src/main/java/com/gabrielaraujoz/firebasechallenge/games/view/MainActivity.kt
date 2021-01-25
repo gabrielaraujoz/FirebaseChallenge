@@ -3,14 +3,19 @@ package com.gabrielaraujoz.firebasechallenge.games.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gabrielaraujoz.firebasechallenge.R
 import com.gabrielaraujoz.firebasechallenge.accounts.LoginActivity
+import com.gabrielaraujoz.firebasechallenge.games.model.GameModel
+import com.gabrielaraujoz.firebasechallenge.games.model.GameReceivedModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -20,16 +25,34 @@ class MainActivity : AppCompatActivity() {
     private lateinit var user: FirebaseUser
     private lateinit var storage: FirebaseStorage
     private lateinit var database: FirebaseDatabase
-    private lateinit var userRef: StorageReference
+    private lateinit var storageRef: StorageReference
     private lateinit var databaseRef: DatabaseReference
+    private lateinit var userDatabaseRef: DatabaseReference
+    private lateinit var userStorageRef: StorageReference
+    private lateinit var viewManager: GridLayoutManager
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: GameListAdapter
+    private var gameList = mutableListOf<GameModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        auth = FirebaseAuth.getInstance()
-        user = auth.currentUser!!
-        storage = FirebaseStorage.getInstance()
+        initialSetup()
+        recyclerViewSetup()
+
+        val gameListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val games = snapshot.value as MutableList<GameReceivedModel>
+
+                viewAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException())            }
+        }
+
+        userDatabaseRef.addValueEventListener(gameListener)
 
         findViewById<Button>(R.id.btnLogout).setOnClickListener() {
             auth.signOut()
@@ -44,4 +67,39 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun initialSetup() {
+        auth = FirebaseAuth.getInstance()
+        user = auth.currentUser!!
+        storage = FirebaseStorage.getInstance()
+        database = FirebaseDatabase.getInstance()
+        storageRef = storage.getReference("uploads")
+        databaseRef = database.getReference("users")
+        userDatabaseRef = databaseRef.child(user.uid)
+        userStorageRef = storageRef.child(user.uid)
+    }
+
+    fun recyclerViewSetup() {
+
+        viewManager = GridLayoutManager(this, 2)
+        recyclerView = findViewById(R.id.listGames)
+        viewAdapter = GameListAdapter(gameList) {
+            val bundle = bundleOf("GAME" to it)
+            val intent = Intent(this, GameDetailsActivity::class.java)
+            intent.putExtra("Game", bundle)
+            startActivity(intent)
+        }
+
+        recyclerView.apply {
+            setHasFixedSize(true)
+
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
+    }
+
+    companion object {
+        const val TAG = "APP"
+    }
 }
+
