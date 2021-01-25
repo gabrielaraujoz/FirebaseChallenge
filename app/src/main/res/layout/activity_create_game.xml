@@ -93,11 +93,11 @@
                         android:background="@color/white"
                         android:backgroundTint="@color/white"
                         android:ellipsize="end"
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/description"
                         android:inputType="text"
                         android:lineSpacingMultiplier="1.5"
                         android:lines="3"
-                        android:fontFamily="@font/roboto"
                         android:textColor="@color/text_green" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,14 +116,14 @@
         </com.google.android.material.card.MaterialCardView>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgCreateGameBtn"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:elevation="1dp"
-            android:id="@+id/imgCreateGameBtn"
-            android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"
-            app:civ_circle_background_color="@color/red_app"
-            android:src="@drawable/ic_camera_foreground" />
+            android:elevation="1dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_camera_foreground"
+            app:civ_circle_background_color="@color/red_app" />
 
 
     </RelativeLayout>

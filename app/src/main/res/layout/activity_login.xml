@@ -17,69 +17,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
         android:background="@color/white"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <LinearLayout
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="20dp"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:backgroundTint="@color/white"
                 android:id="@+id/tilLoginEmail"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white">
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLoginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    android:backgroundTint="@color/white"
                     android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/text_green"
-                    android:id="@+id/etLoginEmail"/>
+                    android:textColor="@color/text_green" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:background="@color/white"
                 android:id="@+id/tilLoginPassword"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    android:backgroundTint="@color/white"
                     android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColor="@color/text_green"
-                    android:id="@+id/etLoginPassword"/>
+                    android:textColor="@color/text_green" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cbLoginRemember"
                 android:layout_width="wrap_content"
-                android:backgroundTint="@color/white"
-                android:background="@color/white"
-                android:shadowColor="@color/red_app"
                 android:layout_height="wrap_content"
-                android:text="@string/remember"/>
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:shadowColor="@color/red_app"
+                android:text="@string/remember" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLoginLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/log_in"
-                app:cornerRadius="3dp"
-                android:fontFamily="@font/roboto"
                 android:backgroundTint="@color/red_app"
-                android:id="@+id/btnLoginLogin"/>
+                android:fontFamily="@font/roboto"
+                android:text="@string/log_in"
+                app:cornerRadius="3dp" />
 
             <Button
                 android:id="@+id/btnLoginCreateAcc"

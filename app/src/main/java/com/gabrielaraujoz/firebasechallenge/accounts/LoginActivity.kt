@@ -44,7 +44,10 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<MaterialButton>(R.id.btnLoginLogin).setOnClickListener() {
             if (validarCampos()) {
-                auth.signInWithEmailAndPassword(accountEmail.text.toString(), accountPassword.text.toString())
+                auth.signInWithEmailAndPassword(
+                    accountEmail.text.toString(),
+                    accountPassword.text.toString()
+                )
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
@@ -56,8 +59,10 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithEmail:failure", task.exception)
-                            Toast.makeText(baseContext, "Email ou senha incorretos.",
-                                Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                baseContext, "Email ou senha incorretos.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
             }

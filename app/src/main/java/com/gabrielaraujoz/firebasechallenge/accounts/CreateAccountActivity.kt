@@ -48,7 +48,11 @@ class CreateAccountActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnCreateAcc).setOnClickListener() {
             if (validarCampos()) {
-                criarConta(accountName.text.toString(), accountEmail.text.toString(), accountPassword.text.toString())
+                criarConta(
+                    accountName.text.toString(),
+                    accountEmail.text.toString(),
+                    accountPassword.text.toString()
+                )
             }
         }
 
@@ -89,23 +93,25 @@ class CreateAccountActivity : AppCompatActivity() {
     private fun criarConta(nome: String, email: String, password: String) {
 
         auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
 
-                        Toast.makeText(
-                                baseContext, "User successfully created",
-                                Toast.LENGTH_SHORT
-                        ).show()
+                    Toast.makeText(
+                        baseContext, "User successfully created",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("CREATE_ACCOUNT_FAIL", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed",
-                                Toast.LENGTH_SHORT).show()
-                    }
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("CREATE_ACCOUNT_FAIL", "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext, "Authentication failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }
     }
 }
