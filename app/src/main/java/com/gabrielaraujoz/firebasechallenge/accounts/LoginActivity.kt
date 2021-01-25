@@ -84,9 +84,9 @@ class LoginActivity : AppCompatActivity() {
         return response
     }
 
-//    fun salvarRemember(context: Context, check: String?) {
+//    fun salvarRemember(context: Context, check: Boolean) {
 //        val preferences: SharedPreferences =
 //            context.getSharedPreferences("APP", Context.MODE_PRIVATE)
-//        preferences.edit().putString("UIID", uiid).apply()
+//        preferences.edit().putBoolean("REMEMBER", check).apply()
 //    }
 }

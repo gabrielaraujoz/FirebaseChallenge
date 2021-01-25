@@ -22,7 +22,6 @@ import com.google.firebase.storage.ktx.storage
 class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var storage: FirebaseStorage
     private lateinit var accountName: TextInputEditText
     private lateinit var accountEmail: TextInputEditText
     private lateinit var accountPassword: TextInputEditText
@@ -90,22 +89,14 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun criarConta(nome: String, email: String, password: String) {
 
-        storage = FirebaseStorage.getInstance()
-
-
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-
-                        val user = auth.currentUser
 
                         Toast.makeText(
                                 baseContext, "User successfully created",
                                 Toast.LENGTH_SHORT
                         ).show()
-
-                        val reference = storage.getReference("users")
-                        reference.child(user!!.uid)
 
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
