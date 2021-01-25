@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.gabrielaraujoz.firebasechallenge.MainActivity
+import com.gabrielaraujoz.firebasechallenge.games.view.MainActivity
 import com.gabrielaraujoz.firebasechallenge.R
 import com.gabrielaraujoz.firebasechallenge.accounts.LoginActivity
 import com.google.firebase.auth.FirebaseAuth

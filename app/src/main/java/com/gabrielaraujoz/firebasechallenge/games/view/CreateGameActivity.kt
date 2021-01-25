@@ -43,19 +43,15 @@ class CreateGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_game)
 
-        gameImage = findViewById(R.id.imgCreateGameBtn)
-        gameImage.setOnClickListener() {
-            procurarArquivo()
-        }
 
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
         storage = FirebaseStorage.getInstance()
-        userRef = storage.getReference(user.uid)
+        userRef = storage.getReference("uploads")
 
         database = FirebaseDatabase.getInstance()
-        databaseRef = database.getReference(user.uid)
+        databaseRef = database.getReference("users")
 
         gameName = findViewById(R.id.etGameCreateName)
         gameDate = findViewById(R.id.etGameCreateDate)
@@ -63,7 +59,12 @@ class CreateGameActivity : AppCompatActivity() {
         gameNameField = findViewById(R.id.tilGameCreateName)
         gameDateField = findViewById(R.id.tilGameCreateDate)
         gameDescriptionField = findViewById(R.id.tilGameCreateDescription)
+        imageFileReference = ""
 
+        gameImage = findViewById(R.id.imgCreateGameBtn)
+        gameImage.setOnClickListener() {
+            procurarArquivo()
+        }
 
         findViewById<MaterialButton>(R.id.btnCreateGame).setOnClickListener() {
             if (validarDados()) {
@@ -115,7 +116,7 @@ class CreateGameActivity : AppCompatActivity() {
                     .getExtensionFromMimeType(contentResolver.getType(imageURI!!))
 
                 val fileReference =
-                    storageReference.child("${System.currentTimeMillis()}.${extension}")
+                    storageReference.child(user.uid).child("${System.currentTimeMillis()}.${extension}")
 
                 fileReference.putFile(this)
                     .addOnSuccessListener {
@@ -158,7 +159,7 @@ class CreateGameActivity : AppCompatActivity() {
         imageRef: String
     ) {
         val newGame = GameModel(name, date, description, imageRef)
-        databaseRef.child(name).setValue(newGame)
+        databaseRef.child(user.uid).child(name).setValue(newGame)
 
     }
 
