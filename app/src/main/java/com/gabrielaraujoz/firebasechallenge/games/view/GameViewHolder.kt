@@ -10,6 +10,8 @@ import com.gabrielaraujoz.firebasechallenge.games.model.GameModel
 
 class GameViewHolder (view: View): RecyclerView.ViewHolder(view) {
 
+
+
     private val name = view.findViewById<TextView>(R.id.txtCardGameName)
     private val year = view.findViewById<TextView>(R.id.txtCardGameYear)
     private val image = view.findViewById<ImageView>(R.id.imgCardGame)

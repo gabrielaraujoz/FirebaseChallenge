@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 data class GameModel(
-    val name: String,
-    val created_at: String,
-    val description: String,
-    val image_URI: String
+        var name: String = "",
+        var created_at: String = "",
+        var description: String = "",
+        var image_URI: String = ""
 )

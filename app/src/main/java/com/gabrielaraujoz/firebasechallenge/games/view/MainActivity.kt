@@ -34,6 +34,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewAdapter: GameListAdapter
     private var gameList = mutableListOf<GameModel>()
 
+    data class GameModelMain(
+            val name: String = "",
+            val created_at: String = "",
+            val description: String = "",
+            val image_URI: String = ""
+    )
+
+    private var game = GameModel("","","","")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,8 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         val gameListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val games = snapshot.value as MutableList<GameReceivedModel>
-
+                snapshot.children.forEach()  {
+                    val data = it.getValue(GameModelMain::class.java)!!
+                    gameList.add(GameModel(data.name, data.created_at, data.description, data.image_URI))
+                }
                 viewAdapter.notifyDataSetChanged()
             }
 
@@ -84,9 +95,11 @@ class MainActivity : AppCompatActivity() {
         viewManager = GridLayoutManager(this, 2)
         recyclerView = findViewById(R.id.listGames)
         viewAdapter = GameListAdapter(gameList) {
-            val bundle = bundleOf("GAME" to it)
             val intent = Intent(this, GameDetailsActivity::class.java)
-            intent.putExtra("Game", bundle)
+            intent.putExtra("Name", it.name)
+            intent.putExtra("Description", it.description)
+            intent.putExtra("Created_at", it.created_at)
+            intent.putExtra("ImageURI", it.image_URI)
             startActivity(intent)
         }
 
