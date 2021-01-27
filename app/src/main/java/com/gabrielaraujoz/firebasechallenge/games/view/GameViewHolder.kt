@@ -14,7 +14,7 @@ class GameViewHolder (view: View): RecyclerView.ViewHolder(view) {
 
     private val name = view.findViewById<TextView>(R.id.txtCardGameName)
     private val year = view.findViewById<TextView>(R.id.txtCardGameYear)
-    private val image = view.findViewById<ImageView>(R.id.imgCardGame)
+    val image = view.findViewById<ImageView>(R.id.imgCardGame)
 
     fun bind (game: GameModel) {
         name.text = game.name

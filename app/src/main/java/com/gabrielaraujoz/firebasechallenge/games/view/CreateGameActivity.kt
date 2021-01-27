@@ -36,7 +36,7 @@ class CreateGameActivity : AppCompatActivity() {
     private lateinit var user: FirebaseUser
     private lateinit var userRef: StorageReference
     private lateinit var databaseRef: DatabaseReference
-    private lateinit var imageFileReference: String
+    private var imageFileReference: String = ""
     private var imageURI: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,6 @@ class CreateGameActivity : AppCompatActivity() {
         gameNameField = findViewById(R.id.tilGameCreateName)
         gameDateField = findViewById(R.id.tilGameCreateDate)
         gameDescriptionField = findViewById(R.id.tilGameCreateDescription)
-        imageFileReference = ""
 
         gameImage = findViewById(R.id.imgCreateGameBtn)
         gameImage.setOnClickListener() {
@@ -112,7 +111,7 @@ class CreateGameActivity : AppCompatActivity() {
         return response
     }
 
-    fun enviarArquivo(storageReference: StorageReference) {
+    private fun enviarArquivo(storageReference: StorageReference) {
         if (imageURI != null) {
             imageURI?.run {
 
@@ -124,7 +123,9 @@ class CreateGameActivity : AppCompatActivity() {
 
                 fileReference.putFile(this)
                     .addOnSuccessListener {
-                        imageFileReference = fileReference.toString()
+                        fileReference.downloadUrl.addOnSuccessListener {
+                            imageFileReference = it.toString()
+                        }
                     }
                     .addOnFailureListener {
                         Toast.makeText(
