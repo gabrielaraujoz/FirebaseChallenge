@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.gabrielaraujoz.firebasechallenge.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,10 +36,7 @@ class GameDetailsActivity : AppCompatActivity() {
         launchDate.text = intent.getStringExtra("Created_at")
         gameDescription.text = intent.getStringExtra("Description")
 
-        storage = FirebaseStorage.getInstance()
-        storageRef = storage.getReference("uploads")
-/*        storageRef
-        gameImage.setImageURI(storageRef.downloadUrl.result)*/
+        Glide.with(this).load(intent.getStringExtra("ImageURI")).into(gameImage)
 
 
     }

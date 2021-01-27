@@ -66,81 +66,56 @@ class CreateGameActivity : AppCompatActivity() {
         }
 
         findViewById<MaterialButton>(R.id.btnCreateGame).setOnClickListener() {
-            if (validarDados()) {
-                enviarArquivo(userRef)
-                enviarGame(
-                    databaseRef,
-                    gameName.text.toString(),
-                    gameDate.text.toString(),
-                    gameDescription.text.toString(),
-                    imageFileReference
-                )
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, getString(R.string.error_verify_inputs), Toast.LENGTH_SHORT).show()
-            }
+            validarDados()
         }
 
     }
 
-    fun validarDados(): Boolean {
-        var response = true
+    private fun validarDados() {
 
         if (gameName.text.isNullOrBlank()) {
             gameNameField.error = getString(R.string.insert_game_name)
-            response = false
-        }
-
-        if (gameDate.text.isNullOrBlank()) {
+        } else if (gameDate.text.isNullOrBlank()) {
             gameDateField.error = getString(R.string.insert_game_launch_date)
-            response = false
-        }
-
-        if (gameDescription.text.isNullOrBlank()) {
+        } else if (gameDescription.text.isNullOrBlank()) {
             gameDescriptionField.error = getString(R.string.insert_game_description)
-            response = false
-        }
-
-        if (imageURI == null) {
+        } else if (imageURI == null) {
             Toast.makeText(this, getString(R.string.insert_game_image), Toast.LENGTH_SHORT).show()
-            response = false
+        } else {
+            enviarArquivo(userRef)
         }
 
-        return response
     }
 
     private fun enviarArquivo(storageReference: StorageReference) {
-        if (imageURI != null) {
-            imageURI?.run {
 
-                val extension = MimeTypeMap.getSingleton()
-                    .getExtensionFromMimeType(contentResolver.getType(imageURI!!))
+        imageURI?.run {
 
-                val fileReference =
+            val extension = MimeTypeMap.getSingleton()
+                    .getExtensionFromMimeType(contentResolver.getType(this))
+
+            val fileReference =
                     storageReference.child(user.uid).child("${System.currentTimeMillis()}.${extension}")
 
-                fileReference.putFile(this)
+            fileReference.putFile(this)
                     .addOnSuccessListener {
                         fileReference.downloadUrl.addOnSuccessListener {
                             imageFileReference = it.toString()
+                            enviarGame(databaseRef, gameName.text.toString(), gameDate.text.toString(), gameDescription.text.toString(), imageFileReference)
                         }
                     }
                     .addOnFailureListener {
                         Toast.makeText(
-                            this@CreateGameActivity,
-                            getString(R.string.image_upload_failure),
-                            Toast.LENGTH_SHORT
+                                this@CreateGameActivity,
+                                getString(R.string.image_upload_failure),
+                                Toast.LENGTH_SHORT
                         )
-                            .show()
+                                .show()
                     }
-            }
-
         }
     }
 
-    fun procurarArquivo() {
+    private fun procurarArquivo() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -156,15 +131,19 @@ class CreateGameActivity : AppCompatActivity() {
         }
     }
 
-    fun enviarGame(
-        databaseRef: DatabaseReference,
-        name: String,
-        date: String,
-        description: String,
-        imageRef: String
+    private fun enviarGame(
+            databaseRef: DatabaseReference,
+            name: String,
+            date: String,
+            description: String,
+            imageRef: String
     ) {
         val newGame = GameModel(name, date, description, imageRef)
         databaseRef.child(user.uid).child(name).setValue(newGame)
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
 
     }
 
