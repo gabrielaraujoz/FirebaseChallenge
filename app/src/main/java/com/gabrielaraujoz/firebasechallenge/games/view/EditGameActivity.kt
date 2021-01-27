@@ -49,7 +49,7 @@ class EditGameActivity : AppCompatActivity() {
 
         name = intent.getStringExtra("Name").toString()
         date = intent.getStringExtra("Created_at").toString()
-        description= intent.getStringExtra("Description").toString()
+        description = intent.getStringExtra("Description").toString()
         imgUrl = intent.getStringExtra("ImageURI").toString()
 
         auth = FirebaseAuth.getInstance()
@@ -108,7 +108,11 @@ class EditGameActivity : AppCompatActivity() {
     private fun enviarArquivo(storageReference: StorageReference) {
         if (imageURI == null) {
 
-            enviarGame(databaseRef, gameName.text.toString(), gameDate.text.toString(), gameDescription.text.toString(), imgUrl)
+            enviarGame(databaseRef,
+                    gameName.text.toString(),
+                    gameDate.text.toString(),
+                    gameDescription.text.toString(),
+                    imgUrl)
 
         } else {
             imageURI?.run {
@@ -117,13 +121,18 @@ class EditGameActivity : AppCompatActivity() {
                         .getExtensionFromMimeType(contentResolver.getType(this))
 
                 val fileReference =
-                        storageReference.child(user.uid).child("${System.currentTimeMillis()}.${extension}")
+                        storageReference.child(user.uid)
+                                .child("${System.currentTimeMillis()}.${extension}")
 
                 fileReference.putFile(this)
                         .addOnSuccessListener {
                             fileReference.downloadUrl.addOnSuccessListener {
                                 imageFileReference = it.toString()
-                                enviarGame(databaseRef, gameName.text.toString(), gameDate.text.toString(), gameDescription.text.toString(), imageFileReference)
+                                enviarGame(databaseRef,
+                                        gameName.text.toString(),
+                                        gameDate.text.toString(),
+                                        gameDescription.text.toString(),
+                                        imageFileReference)
                             }
                         }
                         .addOnFailureListener {

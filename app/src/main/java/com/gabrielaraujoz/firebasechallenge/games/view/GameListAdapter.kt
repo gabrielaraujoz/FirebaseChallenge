@@ -9,10 +9,15 @@ import com.bumptech.glide.Glide
 import com.gabrielaraujoz.firebasechallenge.R
 import com.gabrielaraujoz.firebasechallenge.games.model.GameModel
 
-class GameListAdapter (private var games: MutableList<GameModel>, private val listener: (GameModel) -> Unit): RecyclerView.Adapter<GameViewHolder>() {
+class GameListAdapter(
+    private var games: MutableList<GameModel>,
+    private val listener: (GameModel) -> Unit
+) : RecyclerView.Adapter<GameViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_game_item, parent, false)
-        return GameViewHolder(view)    }
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.card_game_item, parent, false)
+        return GameViewHolder(view)
+    }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val item = games[position]

@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gabrielaraujoz.firebasechallenge.R
 import com.gabrielaraujoz.firebasechallenge.accounts.LoginActivity
 import com.gabrielaraujoz.firebasechallenge.games.model.GameModel
-import com.gabrielaraujoz.firebasechallenge.games.model.GameReceivedModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,13 +33,13 @@ class MainActivity : AppCompatActivity() {
     private var gameList = mutableListOf<GameModel>()
 
     data class GameModelMain(
-            val name: String = "",
-            val created_at: String = "",
-            val description: String = "",
-            val image_URI: String = ""
+        val name: String = "",
+        val created_at: String = "",
+        val description: String = "",
+        val image_URI: String = ""
     )
 
-    private var game = GameModel("","","","")
+    private var game = GameModel("", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,15 +50,23 @@ class MainActivity : AppCompatActivity() {
 
         val gameListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach()  {
+                snapshot.children.forEach() {
                     val data = it.getValue(GameModelMain::class.java)!!
-                    gameList.add(GameModel(data.name, data.created_at, data.description, data.image_URI))
+                    gameList.add(
+                        GameModel(
+                            data.name,
+                            data.created_at,
+                            data.description,
+                            data.image_URI
+                        )
+                    )
                 }
                 viewAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "loadPost:onCancelled", error.toException())            }
+                Log.w(TAG, "loadPost:onCancelled", error.toException())
+            }
         }
 
         userDatabaseRef.addValueEventListener(gameListener)

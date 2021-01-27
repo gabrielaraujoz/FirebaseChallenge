@@ -92,26 +92,33 @@ class CreateGameActivity : AppCompatActivity() {
         imageURI?.run {
 
             val extension = MimeTypeMap.getSingleton()
-                    .getExtensionFromMimeType(contentResolver.getType(this))
+                .getExtensionFromMimeType(contentResolver.getType(this))
 
             val fileReference =
-                    storageReference.child(user.uid).child("${System.currentTimeMillis()}.${extension}")
+                storageReference.child(user.uid)
+                    .child("${System.currentTimeMillis()}.${extension}")
 
             fileReference.putFile(this)
-                    .addOnSuccessListener {
-                        fileReference.downloadUrl.addOnSuccessListener {
-                            imageFileReference = it.toString()
-                            enviarGame(databaseRef, gameName.text.toString(), gameDate.text.toString(), gameDescription.text.toString(), imageFileReference)
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(
-                                this@CreateGameActivity,
-                                getString(R.string.image_upload_failure),
-                                Toast.LENGTH_SHORT
+                .addOnSuccessListener {
+                    fileReference.downloadUrl.addOnSuccessListener {
+                        imageFileReference = it.toString()
+                        enviarGame(
+                            databaseRef,
+                            gameName.text.toString(),
+                            gameDate.text.toString(),
+                            gameDescription.text.toString(),
+                            imageFileReference
                         )
-                                .show()
                     }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(
+                        this@CreateGameActivity,
+                        getString(R.string.image_upload_failure),
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
         }
     }
 
@@ -132,11 +139,11 @@ class CreateGameActivity : AppCompatActivity() {
     }
 
     private fun enviarGame(
-            databaseRef: DatabaseReference,
-            name: String,
-            date: String,
-            description: String,
-            imageRef: String
+        databaseRef: DatabaseReference,
+        name: String,
+        date: String,
+        description: String,
+        imageRef: String
     ) {
         val newGame = GameModel(name, date, description, imageRef)
         databaseRef.child(user.uid).child(name).setValue(newGame)
