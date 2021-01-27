@@ -1,11 +1,14 @@
 package com.gabrielaraujoz.firebasechallenge.games.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.gabrielaraujoz.firebasechallenge.R
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -33,11 +36,25 @@ class GameDetailsActivity : AppCompatActivity() {
 
         nameTop.text = intent.getStringExtra("Name")
         nameBottom.text = intent.getStringExtra("Name")
-        launchDate.text = intent.getStringExtra("Created_at")
+        launchDate.text = "Lançamento: " + intent.getStringExtra("Created_at")
         gameDescription.text = intent.getStringExtra("Description")
+        val imageDownloadUrl = intent.getStringExtra("ImageURI")
+        val date = intent.getStringExtra("Created_at")
 
-        Glide.with(this).load(intent.getStringExtra("ImageURI")).into(gameImage)
+        Glide.with(this).load(imageDownloadUrl).into(gameImage)
 
+        findViewById<ImageView>(R.id.imgBackGameDetails).setOnClickListener() {
+            finish()
+        }
 
+        findViewById<FloatingActionButton>(R.id.btnEditGame).setOnClickListener() {
+            intent = Intent(this, EditGameActivity::class.java)
+            intent.putExtra("Name", nameTop.text)
+            intent.putExtra("Description", gameDescription.text)
+            intent.putExtra("Created_at", date)
+            intent.putExtra("ImageURI", imageDownloadUrl)
+            startActivity(intent)
+
+        }
     }
 }
